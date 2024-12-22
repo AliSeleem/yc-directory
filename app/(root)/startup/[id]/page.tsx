@@ -69,7 +69,7 @@ const page = async ({ params }: { params: Promise<{ id: string}>}) => {
         
         {topPosts?.length > 0 && (
           <div className="max-w-4xl mx-auto">
-            <p className="text-30-semibold">{"Authos' Top Startups"}</p>
+            <p className="text-30-semibold">{`${post.author.name}'s Top Startups`}</p>
 
             <ul className="mt-7 card_grid-sm">
               {topPosts.map((post: StartupTypeCard, i: number) => {
