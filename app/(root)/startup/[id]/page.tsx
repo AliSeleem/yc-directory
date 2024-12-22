@@ -22,7 +22,8 @@ const page = async ({ params }: { params: Promise<{ id: string}>}) => {
 
   const authorPosts = await client.fetch(STARTUPS_BY_AUTHOR_QUERY, { id: post.author?._id });
 
-  const topPosts = topFour(authorPosts);
+  let topPosts = topFour(authorPosts);
+  topPosts = topPosts.filter((post: StartupTypeCard) => post._id !== id);
 
   const content = md.render(post?.pitch || "");
   return (
@@ -72,7 +73,6 @@ const page = async ({ params }: { params: Promise<{ id: string}>}) => {
 
             <ul className="mt-7 card_grid-sm">
               {topPosts.map((post: StartupTypeCard, i: number) => {
-                if(post._id === id) return
                 return <StartupCard key={i} post={post} />
               })}
             </ul>
